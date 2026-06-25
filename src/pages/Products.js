@@ -14,7 +14,7 @@ const Products = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/products');
+      const res = await axios.get('https://fashionhubdemo-production.up.railway.app/api/products');
       setProducts(res.data);
     } catch (err) { console.log(err); }
   };
@@ -30,9 +30,9 @@ const Products = () => {
         colors: form.colors.split(',').map(c => c.trim()),
       };
       if (editingProduct) {
-        await axios.put(`http://localhost:5000/api/products/${editingProduct._id}`, data);
+        await axios.put(`https://fashionhubdemo-production.up.railway.app/api/products/${editingProduct._id}`, data);
       } else {
-        await axios.post('http://localhost:5000/api/products', data);
+        await axios.post('https://fashionhubdemo-production.up.railway.app/api/products', data);
       }
       setShowForm(false);
       setEditingProduct(null);
@@ -59,7 +59,7 @@ const Products = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Delete karna chahte ho?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/products/${id}`);
+        await axios.delete(`https://fashionhubdemo-production.up.railway.app/api/products/${id}`);
         fetchProducts();
       } catch (err) { console.log(err); }
     }

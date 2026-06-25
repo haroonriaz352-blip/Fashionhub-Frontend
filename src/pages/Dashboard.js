@@ -16,8 +16,8 @@ const Dashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const ordersRes = await axios.get('http://localhost:5000/api/orders');
-      const customersRes = await axios.get('http://localhost:5000/api/customers');
+      const ordersRes = await axios.get('https://fashionhubdemo-production.up.railway.app/api/orders');
+      const customersRes = await axios.get('https://fashionhubdemo-production.up.railway.app/api/customers');
       const orders = ordersRes.data;
       const customers = customersRes.data;
 

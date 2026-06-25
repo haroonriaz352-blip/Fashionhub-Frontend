@@ -9,7 +9,7 @@ const Conversations = () => {
 
   const fetchConversations = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/conversations');
+      const res = await axios.get('https://fashionhubdemo-production.up.railway.app/api/conversations');
       setConversations(res.data);
     } catch (err) {
       console.log(err);

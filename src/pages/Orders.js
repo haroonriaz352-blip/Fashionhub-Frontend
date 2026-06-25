@@ -8,14 +8,14 @@ const Orders = () => {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/orders');
+      const res = await axios.get('https://fashionhubdemo-production.up.railway.app/api/orders');
       setOrders(res.data);
     } catch (err) { console.log(err); }
   };
 
   const updateStatus = async (id, status) => {
     try {
-      await axios.put(`http://localhost:5000/api/orders/${id}`, { status });
+      await axios.put(`https://fashionhubdemo-production.up.railway.app/api/orders/${id}`, { status });
       fetchOrders();
     } catch (err) { console.log(err); }
   };

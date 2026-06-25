@@ -8,7 +8,7 @@ const Customers = () => {
 
   const fetchCustomers = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/customers');
+      const res = await axios.get('https://fashionhubdemo-production.up.railway.app/api/customers');
       setCustomers(res.data);
     } catch (err) { console.log(err); }
   };
@@ -16,7 +16,7 @@ const Customers = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Delete karna chahte ho?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/customers/${id}`);
+        await axios.delete(`https://fashionhubdemo-production.up.railway.app/api/customers/${id}`);
         fetchCustomers();
       } catch (err) { console.log(err); }
     }
@@ -42,7 +42,7 @@ const Customers = () => {
 
   const exportOrdersCSV = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/orders');
+      const res = await axios.get('https://fashionhubdemo-production.up.railway.app/api/orders');
       const orders = res.data;
       const headers = ['Order ID', 'Total Amount', 'Status', 'Payment Status', 'Date'];
       const rows = orders.map(o => [
