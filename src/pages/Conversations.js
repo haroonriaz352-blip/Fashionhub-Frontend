@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { 
   Loader2, MessageCircle, Send, Camera, MessageSquare, 
-  AlertCircle, CheckCircle, Clock, Search, ChevronRight
+  AlertCircle, Search, ChevronRight
 } from 'lucide-react';
 
 const API = 'https://fashionhubdemo-production.up.railway.app';
