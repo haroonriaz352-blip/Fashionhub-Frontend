@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Loader2, Users, Plus, AlertCircle, Trash2, Download, Phone, MapPin, Instagram } from 'lucide-react';
+import { Loader2, Users, Plus, AlertCircle, Trash2, Download, Phone, MapPin } from 'lucide-react';
 
 const API = 'https://fashionhubdemo-production.up.railway.app';
 
@@ -50,7 +50,7 @@ const Customers = () => {
   };
 
   const exportCSV = () => {
-    const headers = ['Name', 'Instagram ID', 'Phone', 'Address', 'Orders'];
+    const headers = ['Name', ' ID', 'Phone', 'Address', 'Orders'];
     const rows = customers.map(c => [
       c.name || 'N/A',
       c.instagramId || 'N/A',
@@ -146,7 +146,7 @@ const Customers = () => {
               <thead>
                 <tr className="text-left text-gray-500 border-b">
                   <th className="pb-3 text-sm font-medium">Name</th>
-                  <th className="pb-3 text-sm font-medium">Instagram ID</th>
+                  <th className="pb-3 text-sm font-medium"> ID</th>
                   <th className="pb-3 text-sm font-medium">Phone</th>
                   <th className="pb-3 text-sm font-medium">Address</th>
                   <th className="pb-3 text-sm font-medium">Orders</th>
@@ -185,7 +185,7 @@ const Customers = () => {
               <thead>
                 <tr className="text-left border-b bg-gray-50">
                   <th className="pb-3 pt-3 px-4 text-sm font-medium text-gray-500">Name</th>
-                  <th className="pb-3 pt-3 px-4 text-sm font-medium text-gray-500">Instagram</th>
+                  <th className="pb-3 pt-3 px-4 text-sm font-medium text-gray-500"></th>
                   <th className="pb-3 pt-3 px-4 text-sm font-medium text-gray-500">Phone</th>
                   <th className="pb-3 pt-3 px-4 text-sm font-medium text-gray-500">Address</th>
                   <th className="pb-3 pt-3 px-4 text-sm font-medium text-gray-500">Orders</th>
@@ -205,7 +205,7 @@ const Customers = () => {
                     </td>
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-1.5 text-purple-600">
-                        <Instagram size={14} />
+                        <span className="text-purple-500 text-xs font-bold">@</span>
                         <span className="text-sm">@{customer.instagramId || 'N/A'}</span>
                       </div>
                     </td>
