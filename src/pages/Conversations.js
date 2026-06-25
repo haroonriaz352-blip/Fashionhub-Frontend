@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { 
   Loader2, MessageCircle, Send, Camera, MessageSquare, 
-  AlertCircle, CheckCircle, Clock, User, Search,
-  Filter, ChevronRight
+  AlertCircle, CheckCircle, Clock, Search, ChevronRight
 } from 'lucide-react';
 
 const API = 'https://fashionhubdemo-production.up.railway.app';
@@ -27,7 +26,6 @@ const Conversations = () => {
       setConversations(res.data);
     } catch (err) {
       console.log(err);
-      // Demo data
       setConversations([
         { _id: '1', customerName: 'Ahmed Khan', platform: 'instagram', lastMessage: 'Do you have black dress?', time: '2 min ago', status: 'active', unread: true },
         { _id: '2', customerName: 'Sara Ali', platform: 'whatsapp', lastMessage: 'Price of maxi?', time: '5 min ago', status: 'resolved', unread: false },
@@ -62,10 +60,10 @@ const Conversations = () => {
 
   const getStatusConfig = (status) => {
     switch(status) {
-      case 'active': return { color: 'bg-green-100 text-green-600 border-green-200', icon: CheckCircle, label: 'Active' };
-      case 'pending': return { color: 'bg-yellow-100 text-yellow-600 border-yellow-200', icon: Clock, label: 'Pending' };
-      case 'resolved': return { color: 'bg-gray-100 text-gray-600 border-gray-200', icon: CheckCircle, label: 'Resolved' };
-      default: return { color: 'bg-gray-100 text-gray-600', icon: Clock, label: status };
+      case 'active': return { color: 'bg-green-100 text-green-600 border-green-200', label: 'Active' };
+      case 'pending': return { color: 'bg-yellow-100 text-yellow-600 border-yellow-200', label: 'Pending' };
+      case 'resolved': return { color: 'bg-gray-100 text-gray-600 border-gray-200', label: 'Resolved' };
+      default: return { color: 'bg-gray-100 text-gray-600', label: status };
     }
   };
 
@@ -77,7 +75,6 @@ const Conversations = () => {
 
   return (
     <div className="p-4 md:p-6 h-[calc(100vh-80px)]">
-      {/* Header */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">Conversations</h1>
@@ -98,9 +95,7 @@ const Conversations = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6 h-[calc(100%-100px)]">
-        {/* Conversations List */}
         <div className="lg:w-1/3 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
-          {/* Search & Filter */}
           <div className="p-4 border-b border-gray-100">
             <div className="relative mb-3">
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -129,7 +124,6 @@ const Conversations = () => {
             </div>
           </div>
 
-          {/* List */}
           <div className="flex-1 overflow-y-auto">
             {loading ? (
               <div className="p-8 text-center">
@@ -152,7 +146,6 @@ const Conversations = () => {
             ) : (
               filteredConversations.map((conv) => {
                 const statusConfig = getStatusConfig(conv.status);
-                const StatusIcon = statusConfig.icon;
                 return (
                   <div
                     key={conv._id}
@@ -195,11 +188,9 @@ const Conversations = () => {
           </div>
         </div>
 
-        {/* Chat Detail Panel */}
         <div className="lg:w-2/3 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
           {selectedConv ? (
             <>
-              {/* Chat Header */}
               <div className="p-4 border-b border-gray-100 flex justify-between items-center">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold">
@@ -228,9 +219,7 @@ const Conversations = () => {
                 </div>
               </div>
 
-              {/* Messages Area */}
               <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
-                {/* Customer Message */}
                 <div className="flex gap-3 mb-4">
                   <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-xs flex-shrink-0">
                     {selectedConv.customerName?.charAt(0) || '?'}
@@ -241,7 +230,6 @@ const Conversations = () => {
                   </div>
                 </div>
 
-                {/* Demo Reply */}
                 <div className="flex gap-3 mb-4 flex-row-reverse">
                   <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
                     A
@@ -253,7 +241,6 @@ const Conversations = () => {
                 </div>
               </div>
 
-              {/* Reply Input */}
               <div className="p-4 border-t border-gray-100 bg-white">
                 <div className="flex gap-3">
                   <input

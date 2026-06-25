@@ -26,7 +26,7 @@ const AnimatedCounter = ({ value, duration = 1500, prefix = '', suffix = '' }) =
     const animate = (currentTime) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
-      const easeOut = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const easeOut = 1 - Math.pow(1 - progress, 3);
       const current = Math.floor(startValue + (value - startValue) * easeOut);
       setDisplay(current);
 
@@ -74,7 +74,6 @@ const Dashboard = ({ darkMode }) => {
     pendingOrders: 0
   });
   const [recentOrders, setRecentOrders] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
   const [dateRange, setDateRange] = useState('7days');
   const [isLoading, setIsLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState(new Date());
@@ -125,6 +124,7 @@ const Dashboard = ({ darkMode }) => {
   // Update chart when date range changes
   useEffect(() => {
     setChartData(dateRangeData[dateRange] || dateRangeData['7days']);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dateRange]);
 
   const fetchStats = async () => {
@@ -147,7 +147,6 @@ const Dashboard = ({ darkMode }) => {
       setLastUpdated(new Date());
     } catch (err) {
       console.log('Error:', err);
-      // Demo data
       setStats({ 
         totalOrders: 156, 
         totalCustomers: 89, 
@@ -166,14 +165,6 @@ const Dashboard = ({ darkMode }) => {
       setIsLoading(false);
     }
   };
-
-  // 🔍 Search Results
-  const searchResults = searchQuery 
-    ? recentOrders.filter(order => 
-        order.orderId?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        order.status?.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : [];
 
   const statCards = [
     { 
@@ -241,7 +232,6 @@ const Dashboard = ({ darkMode }) => {
           <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Welcome back, Admin!</p>
         </div>
         <div className="flex items-center gap-3">
-          {/* 🔄 Last Updated + Refresh */}
           <div className={`text-xs px-3 py-2 rounded-xl flex items-center gap-2 ${darkMode ? 'bg-gray-800 text-gray-400' : 'bg-white text-gray-500 shadow-sm'}`}>
             <RefreshCw size={14} className={isLoading ? 'animate-spin' : ''} />
             Updated {lastUpdated.toLocaleTimeString()}
@@ -359,7 +349,6 @@ const Dashboard = ({ darkMode }) => {
         </div>
 
         {recentOrders.length === 0 && !isLoading ? (
-          /* 📭 Empty State */
           <div className="text-center py-12">
             <div className="text-6xl mb-4">📦</div>
             <h3 className={`text-lg font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>No Orders Yet</h3>
